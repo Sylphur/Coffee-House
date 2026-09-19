@@ -1,10 +1,24 @@
-body {
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 150%;
-  background-color: #E1D4C9;
+/* colors */
+:root {
+  --page-col: #E1D4C9;
+  --container-col: #665F55;
+  --overlay-col: #403F3DCC;
+  --text-primary-col: #403F3D;
+  --text-inverse-col: #E1D4C9;
+  --text-accent-col: #B0907A;
+  --border-primary-col: #C1B6AD;
+  --border-inverse-col: #665F55;
+
+  --dark-page-col: #292826;
+  --dark-container-col: #403F3D;
+  --dark-overlay-col: #292826CC;
+  --dark-text-primary-col: #E1D4C9;
+  --dark-text-inverse-col: #E1D4C9;
+  --dark-text-accent-col: #B0907A;
+  --dark-border-primary-col: #665F55;
+  --dark-border-inverse-col: #C1B6AD;
 }
+
 /* fonts */
 .font-heading-1 {
   font-weight: 600;
@@ -53,4 +67,12 @@ body {
     font-size: 32px;
     line-height: 125%;
   }
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  background-color: var(--page-col);
 }
