@@ -200,3 +200,121 @@ a:link, a:visited {
   opacity: 1;
   transform: scale(1);
 }
+
+.hero {
+  display: grid;
+  grid-template-areas: "hero-stack";
+  width: 100%;
+  height: 644px;
+  /* max-height: 644px; */
+  position: relative;
+  overflow: hidden;
+}
+.hero__bg, .hero__content {
+  grid-area: hero-stack;
+}
+.hero__bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  justify-self: center;
+  min-width: 100%;
+}
+.hero__content {
+  padding-top: 100px;
+  padding-left: 100px;
+  width: 50rem;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  color: var(--text-inverse-col)
+}
+
+/* default buttons */
+.main-btn {
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  width: 200px;
+  height: 65px;
+  border-radius: 100px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: var(--page-col);
+}
+.main-btn:link, .main-btn:visited {
+  color: var(--text-primary-col);
+}
+.main-btn__img {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.main-btn:hover .main-btn__img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* footer */
+.footer-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 100px;
+  padding: 100px;
+  background-color: var(--container-col);
+  border-radius: 40px;
+}
+.footer-social {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.footer-h2 {
+  color: var(--text-inverse-col);
+}
+.footer-h2__inv {
+  color: var(--text-accent-col);
+}
+.footer-social_icons {
+  display: flex;
+  gap: 12px;
+  color: var(--page-col);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.footer-social_icons svg {
+  fill: none;
+  stroke: currentColor;
+}
+.footer-social_icons:hover {
+  color: var(--container-col);
+  /* transform: translateY(-2px); */
+}
+.footer-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  color: var(--text-inverse-col);
+}
+.contacts-wrapper {
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+.contacts__item {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+.contacts__item:hover {
+  border-color: var(--text-inverse-col);
+}
