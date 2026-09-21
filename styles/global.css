@@ -223,8 +223,10 @@ a:link, a:visited {
 .header-menu_btn {
   display: flex;
   gap: 8px;
-  padding-bottom: 8px;
+  padding-bottom: 4px;
   cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
 }
 .header-menu_btn_img {
   opacity: 0;
@@ -234,6 +236,13 @@ a:link, a:visited {
 .header-menu_btn:hover .header-menu_btn_img {
   opacity: 1;
   transform: scale(1);
+}
+.header-menu-active .header-menu_btn_img {
+  opacity: 1;
+  transform: scale(1);
+}
+.header-menu-active {
+  border-color: var(--text-primary-col);
 }
 
 /* footer */
