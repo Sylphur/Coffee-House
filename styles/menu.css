@@ -72,10 +72,10 @@
 @media (max-width: 1100px) {
   .menu-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 32px 24px;
+    gap: 40px;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 700px) {
   .menu-grid {
     grid-template-columns: 100%;
     gap: 28px;
@@ -112,4 +112,9 @@
 }
 .menu-card__price {
   margin-bottom: 20px;
+}
+@media (max-width: 700px) {
+  .menu-card:nth-child(n + 5) {
+    display: none !important;
+  }
 }

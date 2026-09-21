@@ -360,12 +360,17 @@ a:link, a:visited {
   gap: 40px;
   color: var(--text-inverse-col);
 }
+.contacts-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 @media (max-width: 1220px) {
   .footer-container {
     gap: 60px;
   }
 }
-@media (max-width: 1165px) {
+@media (max-width: 1050px) {
   .footer-container {
     flex-direction: column;
     align-items: start;
