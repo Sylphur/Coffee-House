@@ -200,13 +200,17 @@ a:link, a:visited {
   opacity: 1;
   transform: scale(1);
 }
-
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  margin-bottom: 100px;
+}
 .hero {
   display: grid;
   grid-template-areas: "hero-stack";
   width: 100%;
   height: 644px;
-  /* max-height: 644px; */
   position: relative;
   overflow: hidden;
 }
@@ -258,6 +262,66 @@ a:link, a:visited {
   opacity: 1;
   transform: scale(1);
 }
+.carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+.carousel-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  width: 100%;
+  max-width: 1360px;
+}
+.carousel-btn {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.carousel-icon__bg {
+  fill: transparent;
+  stroke: var(--border-inverse-col);
+  transition: fill 0.2s ease, stroke 0.2s ease;
+}
+.carousel-icon__logo {
+  fill: none;
+  stroke: var(--border-inverse-col);
+  transition: stroke 0.2s ease;
+}
+.carousel-btn:hover .carousel-icon__bg {
+  fill: var(--border-inverse-col);
+  stroke: var(--page-col);
+}
+.carousel-btn:hover .carousel-icon__logo {
+  stroke: var(--page-col);
+}
+.carousel-card {
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.carousel-card__img {
+  max-width: 480px;
+  max-height: 480px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+.carousel-card__title, .carousel-card__text {
+  margin-bottom: 16px;
+}
+.carousel-card__text {
+  text-align: center;
+}
+.about-title {
+  text-align: start;
+  width: calc(100% + 40px);
+}
 
 /* footer */
 .footer-container {
@@ -283,16 +347,27 @@ a:link, a:visited {
 .footer-social_icons {
   display: flex;
   gap: 12px;
-  color: var(--page-col);
-  transition: color 0.2s ease, transform 0.2s ease;
 }
-.footer-social_icons svg {
+.footer-social_link {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.social_icon__bg {
+  fill: transparent;
+  stroke: var(--text-inverse-col);
+  transition: fill 0.2s ease, stroke 0.2s ease;
+}
+.social_icon__logo {
   fill: none;
-  stroke: currentColor;
+  stroke: var(--text-inverse-col);
+  transition: stroke 0.2s ease;
 }
-.footer-social_icons:hover {
-  color: var(--container-col);
-  /* transform: translateY(-2px); */
+.footer-social_link:hover .social_icon__bg {
+  fill: var(--text-inverse-col);
+  stroke: var(--text-inverse-col);
+}
+.footer-social_link:hover .social_icon__logo {
+  stroke: var(--container-col);
 }
 .footer-contacts {
   display: flex;
