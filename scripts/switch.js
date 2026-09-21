@@ -1,39 +1,30 @@
-if (document.documentElement.classList.contains('dark-init')) {
-  document.body.style.transition = 'none';
-  document.body.classList.add('dark');
-  document.body.classList.remove('dark-init');
+const themeSwitch = document.querySelector('.header-switch');
 
+if (themeSwitch && document.documentElement.classList.contains('dark')) {
+  themeSwitch.classList.add('dark');
   setTimeout(() => {
-    document.body.style.transition = '';
+    document.documentElement.classList.remove('dark-init');
   }, 50);
 }
 
-const themeSwitch = document.querySelector('.header-switch');
+if (themeSwitch) {
+  themeSwitch.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.contains('dark');
+    if (isDark) {
+      document.documentElement.classList.remove('dark');
+      themeSwitch.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+      console.log('Set LIGHT');
+    } else {
+      document.documentElement.classList.add('dark');
+      themeSwitch.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+      console.log('Set DARK');
+    }
+    themeSwitch.classList.add('is-clicking');
+  });
 
-if (themeSwitch && document.body.classList.contains('dark')) {
-  themeSwitch.classList.add('dark');
+  themeSwitch.addEventListener('mouseleave', () => {
+    themeSwitch.classList.remove('is-clicking');
+  });
 }
-// if (theme === 'dark') {
-//   document.body.classList.add('dark');
-//   if (themeSwitch) themeSwitch.classList.add('dark');
-// } else {
-//   document.body.classList.remove('dark');
-//   if (themeSwitch) themeSwitch.classList.remove('dark');
-// }
-
-// initTheme();
-
-themeSwitch.addEventListener('click', () => {
-  const isDark = document.body.classList.toggle('dark');
-  themeSwitch.classList.toggle('dark');
-  themeSwitch.classList.add('is-clicking');
-
-  if (isDark) {
-    localStorage.setItem('theme', 'dark');
-  } else {
-    localStorage.setItem('theme', 'light');
-  }
-});
-themeSwitch.addEventListener('mouseleave', () => {
-  themeSwitch.classList.remove('is-clicking');
-});

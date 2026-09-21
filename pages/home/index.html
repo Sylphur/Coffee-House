@@ -4,10 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
-    if (localStorage.getItem('theme') === 'dark') {
-      document.documentElement.classList.add('dark-init');
-      document.write('<style>body{background-color:#292826 !important;}</style>');
-    }
+    if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark', 'dark-init');
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

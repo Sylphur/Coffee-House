@@ -20,8 +20,7 @@
 }
 
 /* dark theme */
-body.dark,
-html.dark-init body {
+html.dark {
   --page-col: var(--dark-page-col);
   --container-col: var(--dark-container-col);
   --overlay-col: var(--dark-overlay-col);
@@ -93,6 +92,9 @@ html.dark-init body {
 *, *::before, *::after {
   margin: 0;
   box-sizing: border-box;
+}
+html {
+  background-color: var(--page-col);
 }
 body {
   font-family: 'Inter', sans-serif;
@@ -246,6 +248,12 @@ a:link, a:visited {
   height: 18px;
   z-index: 1;
   transition: opacity 0.3s ease, filter 0.3s ease;
+}
+html.dark-init .header-switch::after {
+  transition: none !important;
+}
+html.dark-init .header-switch::before {
+  transition: none !important;
 }
 .header-menu_btn {
   display: flex;
