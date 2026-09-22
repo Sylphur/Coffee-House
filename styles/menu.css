@@ -81,6 +81,9 @@
     gap: 28px;
     max-width: 450px;
   }
+  .menu-offer__tabs {
+    gap: 8px;
+  }
 }
 .menu-card {
   display: flex;

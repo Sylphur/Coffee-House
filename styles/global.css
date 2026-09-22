@@ -160,6 +160,10 @@ a:link, a:visited {
   display: flex;
   justify-content: space-between;
 }
+.header-logo-img{
+  color: var(--text-primary-col);
+  transition: color 0.3s ease;
+}
 .header-nav {
   display: flex;
 }
@@ -266,8 +270,9 @@ html.dark-init .header-switch::before {
 }
 .header-menu_btn_img {
   opacity: 0;
-  transform: scale(0.8);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  color: var(--text-primary-col);
+  display: block;
+  transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
 }
 .header-menu_btn:hover .header-menu_btn_img {
   opacity: 1;
