@@ -149,7 +149,7 @@ a:link, a:visited {
   stroke: var(--text-primary-col);
 }
 .is-invertible:hover .svg-logo {
-  stroke: var(--text-inverse-col);
+  stroke: var(--container-col);
   fill: var(--text-inverse-col);
 }
 

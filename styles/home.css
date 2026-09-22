@@ -79,6 +79,9 @@
   opacity: 1;
   transform: scale(1);
 }
+.main-btn:hover .mobile-app-btn__desc {
+  color: var(--page-col);
+}
 .carousel {
   display: flex;
   flex-direction: column;
