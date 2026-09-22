@@ -95,6 +95,7 @@ html.dark {
 }
 html {
   background-color: var(--page-col);
+  scroll-behavior: smooth;
 }
 body {
   font-family: 'Inter', sans-serif;

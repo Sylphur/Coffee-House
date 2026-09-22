@@ -118,3 +118,37 @@
     display: none !important;
   }
 }
+.menu-pagination {
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 1100px) {
+  .menu-pagination {
+    display: flex;
+  }
+}
+.pagination_btn {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.btn__logo {
+  fill: none;
+  stroke: var(--border-inverse-col);
+  transition: stroke 0.2s ease;
+}
+.btn__bg {
+  fill: transparent;
+  stroke: var(--border-inverse-col);
+  transition: fill 0.2s ease, stroke 0.2s ease;
+}
+.pagination_btn:hover .btn__bg {
+  fill: var(--border-inverse-col);
+  stroke: var(--page-col);
+}
+.pagination_btn:hover .btn__logo {
+  stroke: var(--page-col);
+}
