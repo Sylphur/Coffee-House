@@ -389,6 +389,17 @@ html.dark-init .header-switch::before {
   flex-direction: column;
   gap: 16px;
 }
+.contacts__item {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+.contacts__item:hover {
+  border-color: var(--text-inverse-col);
+}
 @media (max-width: 1220px) {
   .footer-container {
     gap: 60px;
