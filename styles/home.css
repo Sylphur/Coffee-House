@@ -159,6 +159,22 @@
   white-space: normal;
   overflow-wrap: break-word;
 }
+.carousel-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.slider-btn {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  fill: var(--border-primary-col);
+}
+.slider-btn-active {
+  fill: var(--border-inverse-col);
+}
 .about-title {
   text-align: start;
   width: 100%;
