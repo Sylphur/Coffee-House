@@ -1,4 +1,4 @@
-/* colors */
+/* colors, header height */
 :root {
   --page-col: #E1D4C9;
   --container-col: #665F55;
@@ -17,6 +17,8 @@
   --dark-text-accent-col: #B0907A;
   --dark-border-primary-col: #665F55;
   --dark-border-inverse-col: #C1B6AD;
+
+  --header-height: 106px;
 }
 
 /* dark theme */
@@ -296,6 +298,7 @@ html.dark-init .header-switch::before {
 .burger-btn:hover {
   color: var(--text-inverse-col);
   background-color: var(--container-col);
+  border-color: transparent;
 }
 .burger-btn:hover .burger-btn__lines span {
   background-color: var(--text-inverse-col);
@@ -357,7 +360,63 @@ html.dark-init .header-switch::before {
     transform: translateY(-3px) rotate(-45deg);
   }
 }
-
+.burger-menu {
+  display: none;
+}
+@media (max-width: 768px) {
+  .burger-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: var(--header-height);
+    right: -100%;
+    width: 100%;
+    height: calc(100vh - var(--header-height));
+    background-color: var(--page-col);
+    z-index: 95;
+    padding: 0 40px 0 40px;
+    gap: 100px;
+    transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .burger-menu-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    transition: border-color 0.2s ease;
+  }
+  .burger-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+  .burger-menu-btn:hover {
+    border-color: var(--text-primary-col);
+  }
+  .burger-menu-nav-list li {
+  border-bottom: 2px solid transparent;
+  }
+  .burger-menu-nav-list li:hover {
+  border-bottom: 2px solid var(--text-primary-col);
+}
+}
+.burger-menu--open {
+    right: 0;
+  }
+.burger-menu-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  transition: border-color 0.2s ease;
+}
 /* footer */
 .footer-container {
   display: flex;
