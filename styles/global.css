@@ -293,12 +293,24 @@ html.dark-init .header-switch::before {
   all: unset;
   display: none;
 }
+.burger-btn:hover {
+  color: var(--text-inverse-col);
+  background-color: var(--container-col);
+}
+.burger-btn:hover .burger-btn__lines span {
+  background-color: var(--text-inverse-col);
+}
 @media (max-width: 900px) {
   .header-nav-list {
     gap: 20px;
   }
 }
 @media (max-width: 800px) {
+  .header-nav-list {
+    gap: 10px;
+  }
+}
+@media (max-width: 768px) {
   .header-nav-list {
     display: none;
   }
