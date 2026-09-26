@@ -8,6 +8,7 @@
   --text-accent-col: #B0907A;
   --border-primary-col: #C1B6AD;
   --border-inverse-col: #665F55;
+  --modal-col: #E1D4C9;
 
   --dark-page-col: #292826;
   --dark-container-col: #403F3D;
@@ -17,6 +18,7 @@
   --dark-text-accent-col: #B0907A;
   --dark-border-primary-col: #665F55;
   --dark-border-inverse-col: #C1B6AD;
+  --dark-modal-col: #403F3D;
 
   --header-height: 106px;
 }
@@ -31,6 +33,7 @@ html.dark {
   --text-accent-col: var(--dark-text-accent-col);
   --border-primary-col: var(--dark-border-primary-col);
   --border-inverse-col: var(--dark-border-inverse-col);
+  --modal-col: var(--dark-modal-col);
 }
 
 /* fonts */
