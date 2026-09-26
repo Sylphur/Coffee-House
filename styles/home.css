@@ -95,6 +95,9 @@
   gap: 40px;
   width: 100%;
   max-width: 1360px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
 }
 @media (max-width: 1000px) {
   .carousel-body {
@@ -109,6 +112,16 @@
   box-sizing: border-box;
   cursor: pointer;
   transition: transform 0.2s ease;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+.carousel-btn--prev {
+  left: 0;
+}
+.carousel-btn--next {
+  right: 0;
 }
 @media (max-width: 700px) {
   .carousel-btn {
@@ -135,20 +148,31 @@
 .carousel-btn:hover .carousel-icon__logo {
   stroke: var(--page-col);
 }
+.carousel-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
 .carousel-card {
-  max-width: 480px;
+  max-width: 100%;
   min-width: 0px;
   width: 100%;
   display: flex;
+  flex: 0 0 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 .carousel-card__img {
   max-width: 480px;
   max-height: 480px;
   object-fit: cover;
   margin-bottom: 20px;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 .carousel-card__title, .carousel-card__text {
   margin-bottom: 16px;
@@ -158,6 +182,22 @@
   width: 100%;
   white-space: normal;
   overflow-wrap: break-word;
+}
+.carousel-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.slider-btn {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  fill: var(--border-primary-col);
+}
+.slider-btn-active {
+  fill: var(--border-inverse-col);
 }
 .about-title {
   text-align: start;
