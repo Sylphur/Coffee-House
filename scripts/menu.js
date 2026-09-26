@@ -7,12 +7,33 @@ let currentCategory = 'coffee';
 let isLoadMoreClicked = false;
 
 if (menuGrid && tabBtns.length > 0) {
-  const renderProducts = (category) => {
-    const filetedProducts = allProducts.filter((product) => product.category === category);
-    console.log('Исходный массив: ', allProducts);
-    console.log('Совпадение по продукту: ', filetedProducts);
+  const renderMenu = (category) => {
+
+    currentCategory = category;
+
+    const filetedProducts = allProducts.filter((product) => product.category.toLowerCase().trim() === category.toLowerCase().trim());
+
+    const isMobile = window.innerWidth <= 768
+    console.log('Is mobile? ', isMobile);
+
+    let productsToRender = filetedProducts;
+    if (isMobile) {
+      if (!isLoadMoreClicked) {
+      productsToRender = filetedProducts.slice(0, 4);
+      }
+      if (filetedProducts.length > 4 && !isLoadMoreClicked) {
+        if (loadMoreBtn) loadMoreBtn.style.setProperty('display', 'block');
+      } else {
+        if (loadMoreBtn) loadMoreBtn.style.setProperty('display', 'none');
+      }
+    } else {
+      if (loadMoreBtn) loadMoreBtn.style.setProperty('display', 'none');
+    }
+    console.log('Product to render: ', productsToRender);
+
+
     menuGrid.innerHTML = '';
-    filetedProducts.forEach((product, index) => {
+    productsToRender.forEach((product, index) => {
       const productCard = document.createElement('article');
       // console.log('Current card to maintain: ', productCard);
       productCard.classList.add('menu-card');
@@ -27,12 +48,20 @@ if (menuGrid && tabBtns.length > 0) {
       menuGrid.appendChild(productCard);
     });
   }
+
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', () => {
+      isLoadMoreClicked = true;
+      renderMenu(currentCategory);
+    });
+  }
+
   const loadProducts = async () => {
     try {
       const response = await fetch(`../../data/products.json`);
       const data = await response.json();
       allProducts = data;
-      renderProducts('coffee');
+      renderMenu('coffee');
     } catch (error) {
       console.error('Error fetching products:', error);
       menuGrid.innerHTML = '<p>Не удалось загрузить меню. Попробуйте позже.</p>';
@@ -48,7 +77,14 @@ if (menuGrid && tabBtns.length > 0) {
         tabBtn.classList.remove('active');
       });
       e.currentTarget.classList.add('active');
-      renderProducts(targetTab);
+      isLoadMoreClicked = false;
+      renderMenu(targetTab);
     });
+  });
+
+  const mediaQueryList = window.matchMedia('(max-width: 768px)');
+  mediaQueryList.addEventListener('change', (e) => {
+    if (e.matches) isLoadMoreClicked = false;
+    renderMenu(currentCategory);
   });
 }
