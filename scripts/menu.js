@@ -10,6 +10,10 @@ let allProducts = [];
 let currentCategory = 'coffee';
 let isLoadMoreClicked = false;
 
+let product = null;
+let selectedSizePrice = 0;
+let selectedAdditivesPrice = 0;
+
 if (menuGrid && tabBtns.length > 0) {
   const renderMenu = (category) => {
 
@@ -18,7 +22,6 @@ if (menuGrid && tabBtns.length > 0) {
     const filetedProducts = allProducts.filter((product) => product.category.toLowerCase().trim() === category.toLowerCase().trim());
 
     const isMobile = window.innerWidth <= 768
-    console.log('Is mobile? ', isMobile);
 
     let productsToRender = filetedProducts;
     if (isMobile) {
@@ -33,7 +36,6 @@ if (menuGrid && tabBtns.length > 0) {
     } else {
       if (loadMoreBtn) loadMoreBtn.style.setProperty('display', 'none');
     }
-    console.log('Product to render: ', productsToRender);
 
 
     menuGrid.innerHTML = '';
@@ -78,7 +80,6 @@ if (menuGrid && tabBtns.length > 0) {
   tabBtns.forEach((tabBtn) => {
     tabBtn.addEventListener('click', (e) => {
       const targetTab = e.currentTarget.getAttribute('data-category');
-      console.log('Target tab: ', targetTab);
       tabBtns.forEach((tabBtn) => {
         tabBtn.classList.remove('active');
       });
@@ -95,11 +96,11 @@ if (menuGrid && tabBtns.length > 0) {
   });
 }
 
+// modal generation
 if (modalOverlay && modalCloseBtn && modalWindow) {
   const openModal = (productName, productId) => {
-    console.log(productId);
 
-    const product = allProducts.find((p) => p.name === productName);
+    product = allProducts.find((p) => p.name === productName);
     if (!product) return;
     modalWindow.innerHTML = `
       <div class="modal-img-wrap menu-card__img-wrap">
@@ -108,32 +109,33 @@ if (modalOverlay && modalCloseBtn && modalWindow) {
       <div class="modal-content">
         <h2 class="font-heading-3 modal-title">${product.name}</h2>
         <p class="modal-text">${product.description}</p>
-        <p class="modal-size-text">Size</p>
+        <p class="modal-size-text">Sizes</p>
         <div class="modal-btns-wrap modal-size-buttons">
-          <button class="menu-inv-btn active">
+          <button class="modal-inv-btn menu-inv-btn active" data-size-price="${product.sizes.s['add-price']}">
             <span class="menu-inv-btn__circle">s</span>
             <span>Small</span>
           </button>
-          <button class="menu-inv-btn">
+          <button class="modal-inv-btn menu-inv-btn" data-size-price="${product.sizes.m['add-price']}">
             <span class="menu-inv-btn__circle">m</span>
             <span>Medium</span>
           </button>
-          <button class="menu-inv-btn">
-            <span class="menu-inv-btn__circle">m</span>
+          <button class="modal-inv-btn menu-inv-btn" data-size-price="${product.sizes.l['add-price']}">
+            <span class="menu-inv-btn__circle">l</span>
             <span>Large</span>
           </button>
         </div>
+      <p class="modal-additives-text">Additives</p>
       <div class="modal-btns-wrap modal-additives-buttons">
-        <button class="menu-inv-btn active">
+        <button class="modal-inv-btn menu-inv-btn" data-additive-price="${product.additives[0]['add-price']}">
           <span class="menu-inv-btn__circle">1</span>
           <span>${product.additives[0].name}</span>
         </button>
-        <button class="menu-inv-btn">
-          <span class="menu-inv-btn__circle">1</span>
+        <button class="modal-inv-btn menu-inv-btn" data-additive-price="${product.additives[1]['add-price']}">
+          <span class="menu-inv-btn__circle">2</span>
           <span>${product.additives[1].name}</span>
         </button>
-        <button class="menu-inv-btn">
-          <span class="menu-inv-btn__circle">1</span>
+        <button class="modal-inv-btn menu-inv-btn" data-additive-price="${product.additives[2]['add-price']}">
+          <span class="menu-inv-btn__circle">3</span>
           <span>${product.additives[2].name}</span>
         </button>
       </div>
@@ -163,6 +165,7 @@ if (modalOverlay && modalCloseBtn && modalWindow) {
     `;
     modalOverlay.style.setProperty('display', 'flex');
     document.body.style.setProperty('overflow', 'hidden');
+    initModalInteractions();
   }
   const closeModal = () => {
     modalOverlay.style.setProperty('display', 'none');
@@ -174,20 +177,63 @@ if (modalOverlay && modalCloseBtn && modalWindow) {
 
   menuGrid.addEventListener('click', (e) => {
     const card = e.target.closest('.menu-card');
-    console.log("Click! Card found: ", card);
 
     if (!card) return;
     const productName = card.dataset.name;
     const productId = card.dataset.id;
-    console.log('Product name: ', productName, productId);
     openModal(productName, productId);
   });
 
-  if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
   modalOverlay.addEventListener('click', (e) => {
-    if (e.target === modalOverlay) closeModal();
+    const isOverlay = e.target === modalOverlay;
+    const isCloseBtn = e.target.closest('.modal-btn');
+    if (isOverlay || isCloseBtn) closeModal();
   });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeModal();
   });
 }
+
+//modal interactions
+const initModalInteractions = () => {
+  selectedSizePrice = 0;
+  selectedAdditivesPrice = 0;
+
+  const sizeContainer = document.querySelector('.modal-size-buttons');
+  const additivesContainer = document.querySelector('.modal-additives-buttons');
+  if (sizeContainer) {
+    sizeContainer.addEventListener('click', (e) => {
+      const targetBtn = e.target.closest('.menu-inv-btn');
+      if (!targetBtn) return;
+      sizeContainer.querySelectorAll('.menu-inv-btn.active').forEach((btn) => {
+        btn.classList.remove('active');
+      });
+      targetBtn.classList.add('active');
+
+      selectedSizePrice = parseFloat(targetBtn.dataset.sizePrice) || 0;
+      updateModalPrice();
+    });
+  }
+  if (additivesContainer) {
+    additivesContainer.addEventListener('click', (e) => {
+      const targetBtn = e.target.closest('.menu-inv-btn');
+      if (!targetBtn) return;
+      targetBtn.classList.toggle('active');
+
+      selectedAdditivesPrice = 0;
+      additivesContainer.querySelectorAll('.menu-inv-btn.active').forEach((btn) => {
+        selectedAdditivesPrice += parseFloat(btn.dataset.additivePrice) || 0;
+      });
+      updateModalPrice();
+    });
+  }
+}
+
+const updateModalPrice = () => {
+    const priceElement = modalWindow.querySelector('.modal-total-price');
+    if (!priceElement || !product) return;
+
+    const defaultPrice = parseFloat(product.price);
+    const totalPrice = defaultPrice + selectedSizePrice + selectedAdditivesPrice;
+    priceElement.innerHTML = `$${totalPrice.toFixed(2)}`;
+  }

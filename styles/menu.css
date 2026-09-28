@@ -272,3 +272,8 @@
   border-color: var(--container-col);
   color: var(--text-inverse-col);
 }
+.modal-inv-btn.active {
+  background-color: var(--container-col);
+  border-color: var(--text-inverse-col);
+  color: var(--text-inverse-col);
+}
