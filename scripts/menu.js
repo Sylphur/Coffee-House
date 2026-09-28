@@ -97,11 +97,12 @@ if (menuGrid && tabBtns.length > 0) {
 }
 
 // modal generation
-if (modalOverlay && modalCloseBtn && modalWindow) {
+if (modalOverlay && modalWindow) {
   const openModal = (productName, productId) => {
 
     product = allProducts.find((p) => p.name === productName);
     if (!product) return;
+
     modalWindow.innerHTML = `
       <div class="modal-img-wrap menu-card__img-wrap">
         <img src="../../assets/img/menu/${productId}.png" alt="" class="modal-img menu-card__img">

@@ -170,7 +170,6 @@
   height: 100%;
   background-color: var(--overlay-col);
   z-index: 10;
-  /* display: flex !important; */
   align-items: center;
   justify-content: center;
   cursor: pointer;
